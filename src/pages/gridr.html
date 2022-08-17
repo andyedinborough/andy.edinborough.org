@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>GridR</title>
+    <style>
+      body {
+        background: black;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: white;
+      }
+
+      label {
+        cursor: pointer;
+      }
+
+      .offscreen {
+        position: absolute;
+        left: -9999em;
+      }
+
+      #divDisplay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        z-index: -1;
+      }
+
+      #tblGrid {
+        border-top: 1px solid red;
+        border-left: 1px solid red;
+        position: absolute;
+      }
+
+      td {
+        border-bottom: 1px solid red;
+        border-right: 1px solid red;
+      }
+
+      table,
+      tr,
+      td {
+        margin: 0;
+        padding: 0;
+        border-collapse: inherit;
+        border-spacing: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="divDisplay">
+      <table id="tblGrid" class="offscreen"></table>
+    </div>
+    <label id="lblFile">
+      <input type="file" id="txtFile" class="offscreen" />
+      Select Image
+    </label>
+    <div style="margin-top: 10px">
+      <input type="number" id="txtX" style="width: 40px" value="8" /> x
+      <input type="number" id="txtY" style="width: 40px" value="8" />
+    </div>
+    <div style="margin-top: 10px">
+      <input type="color" id="txtColor" value="#ff0000" />
+    </div>
+    <div style="margin-top: 10px">
+      <input type="color" id="txtColorBackground" value="#ff0000" />
+    </div>
+    <script>
+      /// @ts-check
+
+      /** @type {HTMLElement} */
+      const tblGrid = document.querySelector('#tblGrid');
+
+      /** @type {HTMLInputElement} */
+      const txtFile = document.querySelector('#txtFile');
+
+      /** @type {HTMLInputElement} */
+      const divDisplay = document.querySelector('#divDisplay');
+
+      const image = new Image();
+
+      /** @type {{ width: number, height: number, color: string, imageSrc: string, backgroundColor?: string }} */
+      const options = localStorage.getItem('options')
+        ? JSON.parse(localStorage.getItem('options'))
+        : {
+            width: 8,
+            height: 8,
+            imageSrc: '',
+            color: '#ff0000',
+            backgroundColor: '#000000',
+          };
+
+      txtFile.onchange = function (e) {
+        const file = txtFile.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => setImage(reader.result.toString());
+        reader.readAsDataURL(file);
+      };
+
+      /** @type {HTMLInputElement} */
+      const txtX = document.querySelector('#txtX');
+      txtX.value = options.width.toString();
+      txtX.onchange = () => {
+        saveOptions({ width: parseInt(txtX.value) || 8 });
+      };
+
+      /** @type {HTMLInputElement} */
+      const txtY = document.querySelector('#txtY');
+      txtY.value = options.height.toString();
+      txtY.onchange = () => {
+        saveOptions({ height: parseInt(txtY.value) || 8 });
+      };
+
+      /** @type {HTMLInputElement} */
+      const txtColor = document.querySelector('#txtColor');
+      txtColor.value = options.color;
+      txtColor.onchange = () => {
+        saveOptions({ color: txtColor.value || '#ff0000' });
+      };
+
+      /** @type {HTMLInputElement} */
+      const txtColorBackground = document.querySelector('#txtColorBackground');
+      txtColorBackground.value = options.backgroundColor ?? '#000000';
+      txtColorBackground.onchange = () => {
+        saveOptions({ backgroundColor: txtColorBackground.value || '#ff0000' });
+      };
+
+      function generateGrid() {
+        if (!image.width) return;
+        tblGrid.innerHTML = Array.from({ length: options.height }, () => `<tr>` + Array.from({ length: options.width }, () => `<td></td>`).join('\n') + '</tr>').join('\n');
+        const imageRatio = image.width / image.height;
+        const windowWidth = window.innerWidth,
+          windowHeight = window.innerHeight;
+        const windowRatio = windowWidth / windowHeight;
+        const tblStyle = tblGrid.style;
+        const width = (image.width / image.height) * windowHeight;
+        const height = (image.height / image.width) * windowWidth;
+        tblGrid.classList.remove('offscreen');
+        document.body.style.backgroundColor = options.backgroundColor ?? '#000000';
+
+        if (imageRatio > windowRatio) {
+          tblStyle.left = '0';
+          tblStyle.right = '0';
+          tblStyle.top = ((windowHeight - height) / 2).toFixed(0) + 'px';
+          tblStyle.bottom = 'auto';
+          tblStyle.width = windowWidth + 'px';
+          tblStyle.height = height.toFixed(0) + 'px';
+        } else {
+          tblStyle.top = '0';
+          tblStyle.bottom = '0';
+          tblStyle.left = ((windowWidth - width) / 2).toFixed(0) + 'px';
+          tblStyle.right = 'auto';
+          tblStyle.width = width.toFixed(0) + 'px';
+          tblStyle.height = windowHeight + 'px';
+        }
+
+        tblStyle.borderTopColor = options.color;
+        tblStyle.borderLeftColor = options.color;
+        tblGrid.querySelectorAll('tr').forEach((tr) => {
+          tr.style.height = `${100 / options.height}%`;
+          tr.querySelectorAll('td').forEach((td) => {
+            td.style.width = `${100 / options.width}%`;
+            td.style.borderBottomColor = options.color;
+            td.style.borderRightColor = options.color;
+          });
+        });
+      }
+
+      /**
+       * @param {Partial<typeof options>} delta
+       */
+      function saveOptions(delta) {
+        Object.assign(options, delta);
+        localStorage.setItem('options', JSON.stringify(options));
+        generateGrid();
+      }
+
+      /**
+       * @param {string} imageSrc
+       */
+      function setImage(imageSrc) {
+        image.src = imageSrc;
+        divDisplay.style.backgroundImage = `url(${imageSrc})`;
+        saveOptions({ imageSrc });
+      }
+
+      window.onresize = generateGrid;
+      image.onload = generateGrid;
+      if (options.imageSrc) {
+        setImage(options.imageSrc);
+      }
+      txtColor;
+    </script>
+  </body>
+</html>
