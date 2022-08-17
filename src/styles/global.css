@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#bg {
+  z-index: -1;
+}
+h1 {
+  @apply text-4xl mb-6;
+  font-family: Caveat, Arial, Helvetica, sans-serif;
+}
+h2 {
+  @apply text-xl;
+}
+
+p,
+hr {
+  @apply mb-6;
+  color: inherit;
+}
+
+svg {
+  @apply w-5;
+}
+a {
+  @apply text-blue-200 hover:text-yellow-200 hover:underline;
+}
+
+pre[class*="language"] {
+  overflow-x: auto;
+}

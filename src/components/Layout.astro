@@ -1,0 +1,44 @@
+---
+const { home, content } = Astro.props;
+const title = Astro.props?.title || content?.title;
+
+---
+<html lang="en">
+    <head>
+        <meta charSet="utf-8" /><meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>{title ? `${title} | `: ''}Andy Edinborough</title>
+        <style global>
+            @import "../styles/global.css";
+            @import "../styles/prism.css";
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    </head>
+
+    <body class="bg-black">
+        <main class={`${home ? 'max-w-[min(95%,600px)]': 'max-w-[min(95%,1024px)]'} flex flex-col mx-auto mt-10 sm:mt-20 text-white`}>
+            {!home && <header class="flex flex-row items-center mb-4">
+                <h1 class="mb-0"><a href="/" class="text-white">Andy Edinborough</a></h1>
+                <img src="/assets/avatar.jpeg" class="rounded-full w-[40px] ml-auto" />
+            </header>}
+            <section class="bg-[rgba(0,0,0,.6)] rounded-lg p-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.7)]">
+                {title && <><h2>{title}</h2><hr /></>}
+                <slot />
+            </section>
+        </main>
+        <div id="bg" class="fixed inset-0 -z-1 blurred bg-cover bg-center bg-[url(/assets/bg.jpeg)] after:content-[''] after:absolute after:w-full after:h-full after:pointer-events-none after:backdrop-blur-lg" />
+        <footer class="text-center mt-20 text-xs text-slate-700 p-4">
+            &copy; {new Date().getFullYear()} Andy Edinborough
+        </footer>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5049343-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-5049343-2');
+        </script>
+    </body>
+</html>

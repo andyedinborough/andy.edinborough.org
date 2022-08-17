@@ -1,15 +1,17 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# build output
+dist
 
-pids
-logs
-results
+# dependencies
+node_modules/
 
-npm-debug.log
-node_modules
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store

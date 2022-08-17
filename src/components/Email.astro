@@ -1,0 +1,7 @@
+---
+const { value } = Astro.props;
+const encoded = Buffer.from('mailto:' + value).toString('base64');
+---
+<a onmouseover={`this.href=atob('${encoded}')`} onmousedown={`this.href=atob('${encoded}')`} href="#">
+  <slot />
+</a>
