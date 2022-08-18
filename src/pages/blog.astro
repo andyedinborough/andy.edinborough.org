@@ -2,10 +2,10 @@
 import Layout from '../components/Layout.astro';
 import dayjs from 'dayjs';
 
-const data = Astro.fetchContent('./*.md');
+const data = await Astro.glob('./*.md');
 ---
- 
- <Layout title="Blog">
+
+<Layout title="Blog">
     <ul class="text-sm">
         {data.map(post => ({...post, created: new Date(post.created)}))
         .sort((a,b) => b.created.getTime() - a.created.getTime())
@@ -14,8 +14,8 @@ const data = Astro.fetchContent('./*.md');
                 <a href={post.url}>{post.title}</a>
                 <time class="ml-auto">{dayjs(post.created).format('MMMM d, YYYY')}</time>
             </div>
-            <p>{post.description}</p>    
+            <p>{post.description}</p>
             <hr />
         </li>)}
     </ul>
-</Layout>   
+</Layout>

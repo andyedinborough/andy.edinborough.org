@@ -3,19 +3,29 @@ import Layout from '../components/Layout.astro';
 import { Icon } from 'astro-icon';
 import Email from '../components/Email.astro'
 ---
- 
- <Layout home>
+
+<Layout home>
     <div class="text-center mb-6">
         <img src="/assets/avatar.jpeg" class="rounded-full mx-auto w-[120px] mb-8" />
         <h1 class="mb-4">Andy Edinborough</h1>
         <h2 class="mb-12">Husband, Dad, Software Developer</h2>
 
         <div class="grid grid-flow-col gap-12 w-min mx-auto">
-            <a href="http://twitter.com/andyedinborough" rel="external nofollow noopenner"><Icon name={'../../node_modules/bootstrap-icons/icons/twitter' } /></a>
-            <a href="https://github.com/andyedinborough" rel="external nofollow noopenner"><Icon name={'../../node_modules/bootstrap-icons/icons/github' } /></a>
-            <a href="https://linkedin.com/in/andyedinborough" rel="external nofollow noopenner"><Icon name={'../../node_modules/bootstrap-icons/icons/linkedin' } /></a>
-            <Email value="andy@edinborough.org"><Icon name={'../../node_modules/bootstrap-icons/icons/envelope' } /></Email>
-            <a href="/blog" rel="external nofollow noopenner"><Icon name={'../../node_modules/bootstrap-icons/icons/newspaper' } /></a>
+            <a href="http://twitter.com/andyedinborough" rel="external nofollow noopenner">
+                <Icon name="twitter" />
+            </a>
+            <a href="https://github.com/andyedinborough" rel="external nofollow noopenner">
+                <Icon name="github" />
+            </a>
+            <a href="https://linkedin.com/in/andyedinborough" rel="external nofollow noopenner">
+                <Icon name="linkedin" />
+            </a>
+            <Email value="andy@edinborough.org">
+                <Icon name="envelope" />
+            </Email>
+            <a href="/blog" rel="external nofollow noopenner">
+                <Icon name="newspaper" />
+            </a>
         </div>
     </div>
 </Layout>
