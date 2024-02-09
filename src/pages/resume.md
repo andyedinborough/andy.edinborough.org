@@ -7,7 +7,7 @@ description: "Andy Edinborough - An experienced and principled software engineer
 
 # Andy Edinborough
 
-andy@edinborough.org, 316-350-4156, Charlotte North Carolina Metropolitan Area
+andy@edinborough.org, 316-285-0289, Charlotte North Carolina Metropolitan Area
 
 ## Objective
 
@@ -40,7 +40,7 @@ delivering results for customers and increasing value for the business.
 ### CTO, CollegeGrad.com LLC, 2014-Present
 
 - Leading software development and managing AWS infrastructure for popular entry-level
-  site, CollegeGrad.com.
+  site, [CollegeGrad.com](https://collegegrad.com).
 - Peaked reach at over 500,000 unique users per month.
 - Implement Stripe for payments.
 
@@ -54,19 +54,24 @@ delivering results for customers and increasing value for the business.
 - Expanded responsibilities included CRM software used in the call center, followed by the
   POS software used in stores, with the goal of modernizing and rebuilding.
 - Led the e ort to automate build and release processes within Azure Devops pipelines.
-- Managed 3 separate teams through the transition from in-o ce to fully remote.Director of Software Development, Curo Financial, 2014-2017
+- Managed 3 separate teams through the transition from in-office to fully remote.
+
+### Director of Software Development, Curo Financial, 2014-2017
+
 - Led the web development team through the transition from ASP.NET Web Forms to MVC,
   rebuilding our mobile apps to use react-native, migrating from TFSVC to git, .NET Full
   Framework to .NET Core, while overseeing a steady stream of business projects and
   features.
 - Led migration e ort to automate build and release processes.
-- Responsible for key web properties reaching millions of users: speedycash.com,
-  cashmoney.ca, wagedayadvance.co.uk, and related mobile apps.
-- Piloted the e ort to begin restructuring the monolith into sensible microservices.
+- Responsible for key web properties reaching millions of users: [SpeedyCash](https://www.speedycash.com),
+  [CashMoney.ca](cashmoney.ca), wagedayadvance.co.uk, and related mobile apps.
+- Piloted the effort to begin restructuring the monolith into sensible microservices.
   Architected customer messaging platform managing 200k daily emails, text messages, phone
   calls, and push noti cations.
-  Senior Programmer/Analyst, Curo Financial, 2013-2014
-- Developed the company's rst mobile application.
+
+### Senior Programmer/Analyst, Curo Financial, 2013-2014
+
+- Developed the company's first mobile application.
 - Utilized JavaScript and Cordova to target both iOS and Android.
 - Enabled customers to open new loans, make payments, re nance loans, as well as manage
   their accounts from their mobile devices.
@@ -81,7 +86,7 @@ delivering results for customers and increasing value for the business.
 - Launched the company's internet-based lending product enabling customers to login,
   manage their accounts, and open new loans.
 
-### Marketing Engineer Premier Pneumatics, 2005-2008
+### Marketing Engineer, Premier Pneumatics, 2005-2008
 
 - Developed software to automate the sizing process of pneumatic equipment, generate
   product manuals, and catalogs.
