@@ -6,10 +6,11 @@
 // helpful tooltips, and warnings if your exported object is invalid.
 // You can disable this by removing "@ts-check" and `@type` comments below.
 import preact from '@astrojs/preact';
+import icon from "astro-icon";
 
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
-  integrations: [preact()],
+  integrations: [preact(), icon()],
   vite: {
     ssr: {
       external: ['svgo'],
