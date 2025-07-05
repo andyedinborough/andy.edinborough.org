@@ -32,7 +32,7 @@ delivering results for customers and increasing value for the business.
   optimizations by switch to cloud-native solutions.
 - Improve observability and test automation.
 - Rebuilt technical interview process.
-- Pilot the use of AI within engineering -- demonstrating automated refactoring of legacy
+- Pilotted the use of AI within engineering -- demonstrating automated refactoring of legacy
   code patterns.
 - Architected a cloud-native solution to replace a legacy loan decisioning engine with support
   for BPMN, DMN, Experian credit report data, and Python-based machine-learning models.
