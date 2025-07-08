@@ -1,7 +1,7 @@
 ---
 const { home, content } = Astro.props;
-let title = Astro.props?.title || content?.title;
-title = `${title ? `${title} | ` : ""}Andy Edinborough`;
+const title = Astro.props?.title || content?.title;
+const windowTitle = `${title ? `${title} | ` : ""}Andy Edinborough`;
 ---
 
 <html lang="en">
@@ -23,7 +23,7 @@ title = `${title ? `${title} | ` : ""}Andy Edinborough`;
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"
     />
-    <title>{title}</title>
+    <title>{windowTitle}</title>
   </head>
 
   <body class="bg-black">
